@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Website attributes -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Descriptive attributes -->
+    <title>Todo</title>
+    <meta name="description" content="A basic todo-app.">
+    <meta name="author" content="Peario">
+    <!-- External resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mallanna&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <!-- Styling and functionality -->
+    <link href="./styling/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-left">
+          <h1 class="header-title">Todo</h1>
+          <h3 class="header-desc">– Peario edition</h3>
+        </div>
+        <form class="header-right">
+          <dialog id="todo-modal">
+            <button id="close-todo-modal">X</button>
+            hello
+          </dialog>
+          <button id="open-todo-modal">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+              class="create-todo-icon"
+            >
+              <rect width="18" height="18" x="3" y="3" rx="2"/>
+              <path d="M8 12h8"/>
+              <path d="M12 8v8"/>
+            </svg>
+            Create Todo
+          </button>
+        </form>
+      </div>
+      <div class="content">
+        <div id="todos">
+          <label class="todo">
+            <input type="checkbox" checked>
+            Make a basic design for a todo-list
+          </label>
+          <label class="todo">
+            <input type="checkbox" checked>
+            Style it all!!
+          </label>
+          <label class="todo">
+            <input type="checkbox">
+            Design a modal for "Create Todo"
+          </label>
+          <label class="todo">
+            <input type="checkbox">
+            Figure out how to store data
+          </label>
+          <label class="todo">
+            <input type="checkbox">
+            Add more functionality to each todo item
+          </label>
+          <label class="todo">
+            <input type="checkbox">
+            Finish this project
+          </label>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/todo.js"></script>
+  </body>
+</html>

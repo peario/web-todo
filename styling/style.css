@@ -1,0 +1,233 @@
+:root {
+  /* Colorscheme - in HSL values */
+  --clr-foreground: 221 48 9; /* black-/blue-ish */
+  --clr-background: 220 90 96; /* white-ish */
+  --clr-primary: 219 40 35; /* metallic blue */
+  --clr-secondary: 246 23 67; /* glossy grape */
+  --clr-accent: 308 29 70; /* pastel violet */
+  /* Useful variables */
+  --rounded: 0.75rem;
+}
+
+/*
+* Useful knowledge:
+* - 0.5rem = 8px
+* - 1rem = 16px
+* - 1.5rem = 24px
+* - 2rem = 32px
+* URL: https://www.sitepoint.com/understanding-and-using-rem-units-in-css/
+*/
+
+/* General styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html,
+body {
+  min-height: 100%;
+  background-color: hsl(var(--clr-accent));
+  color: hsl(var(--clr-foreground));
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: "Rubik";
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Mallanna";
+  font-weight: 700;
+}
+
+/* Components and specific targets */
+.container {
+  margin: 1rem;
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  /* From https://css.glass */
+  background: hsla(var(--clr-background, 0 0 100) / 0.3);
+  border-radius: var(--rounded, 12px);
+  box-shadow: 0 4px 30px hsla(var(--clr-foreground, 0 0 0) / 0.15);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid hsla(var(--clr-background, 0 0 100) / 0.6);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 4rem;
+  border-bottom: 1px solid hsla(var(--clr-background, 0 0 100) / 0.6);
+}
+
+.header > .header-left {
+  display: flex;
+  gap: 0.65rem;
+  flex-basis: 60%;
+  padding: 0 0 0 0.75rem;
+}
+
+.header-left > .header-title {
+  text-transform: uppercase;
+  font-weight: 800;
+  color: hsl(var(--clr-primary, 0 0 100));
+}
+
+.header-left > .header-desc {
+  display: none;
+  height: 100%;
+  color: hsl(var(--clr-primary, 0 0 100));
+  align-items: center;
+  padding-top: 0.25rem;
+}
+
+.header > .header-right {
+  display: flex;
+  flex-direction: row-reverse;
+  /* align-items: center; */
+  flex-basis: 40%;
+  padding: 0.75rem 0.75rem 0.75rem 0;
+}
+
+#open-todo-modal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsla(var(--clr-foreground, 0 0 0) / 0.7);
+  color: hsla(var(--clr-foreground, 0 0 0) / 1);
+  background-color: hsla(var(--clr-secondary) / 0.5);
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+#open-todo-modal > .create-todo-icon {
+  display: flex;
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: hsla(var(--clr-secondary) / 0.5);
+  stroke: hsla(var(--clr-foreground, 0 0 0) / 0.7);
+  stroke-width: 1px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-right: 0.5rem;
+  cursor: pointer;
+
+  &--end {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+}
+
+#open-todo-modal:hover {
+  background-color: hsla(var(--clr-secondary) / 0.8);
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+  min-height: 4rem;
+  width: 100%;
+}
+
+.content > #todos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+#todos > .todo {
+  padding: 1.25rem 1rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  border-bottom: 1px solid hsla(var(--clr-background, 0 0 100) / 0.6);
+  transition: 0.15s;
+  /* Disable text select */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+#todos .todo:nth-last-of-type(1) {
+  border-bottom: none;
+  border-radius: 0 0 var(--rounded, 12px) var(--rounded, 12px);
+}
+
+.todo:hover {
+  background-color: hsla(var(--clr-background, 0 0 100) / 0.4);
+}
+
+/*
+* Credit: https://moderncss.dev/pure-css-custom-checkbox-style/
+*/
+input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: hsl(var(--clr-accent, 0 0 100));
+  /* Not removed via appearance */
+  margin: 0;
+  /* Other styles */
+  font: inherit;
+  color: currentColor;
+  width: 1.2em;
+  height: 1.2em;
+  border: 1px solid hsla(var(--clr-foreground, 0 0 0) / 0.7);
+  border-radius: 0.1rem;
+  transform: translateY(-0.075em);
+
+  /* Styling :checked */
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 0.1rem;
+  transform: scale(0);
+  transition: 0.15s transform ease-in-out;
+  box-shadow: inset 1em 1em hsla(var(--clr-foreground, 0 0 0) / 0.7);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+/* Styling for displays larger than mobile */
+@media (min-width: 786px) {
+  .container {
+    margin: 4rem 6rem;
+    max-width: 80%;
+  }
+
+  .header-left > .header-desc {
+    display: flex;
+  }
+}
